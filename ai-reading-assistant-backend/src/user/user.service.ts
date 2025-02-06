@@ -15,7 +15,10 @@ export class UserService {
   }
 
   async findOne(id: number): Promise<User | null> {
-    return this.userRepository.findOne({ where: { id }, relations: ['summaries'] });
+    return this.userRepository.findOne({
+      where: { id },
+      relations: ['summaries'],
+    });
   }
 
   async createUser(email: string): Promise<User> {
@@ -28,6 +31,17 @@ export class UserService {
     if (!user) throw new Error('User not found');
     user.isPremium = true;
     return this.userRepository.save(user);
+  }
+
+  // Trova un utente tramite email
+  async findByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { email } });
+  }
+
+  // Crea un utente OAuth se non esiste
+  async createOAuthUser(userData: Partial<User>): Promise<User> {
+    const newUser = this.userRepository.create(userData);
+    return this.userRepository.save(newUser);
   }
 }
 

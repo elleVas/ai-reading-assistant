@@ -1,6 +1,8 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { SummaryService } from './summary.service';
 import { SummaryRequest } from './entities/summary.entity';
+import { AuthGuard } from '@nestjs/passport';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => SummaryRequest)
 export class SummaryResolver {
@@ -16,6 +18,8 @@ export class SummaryResolver {
     return this.summaryService.findOne(id);
   }
 
+  
+  @UseGuards(AuthGuard('jwt'))
   @Mutation(() => SummaryRequest)
   async createSummary(
     @Args('userId') userId: number,

@@ -15,6 +15,10 @@ export class User {
 
   @Field({ nullable: true })
   @Column({ nullable: true })
+  fullName?: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   password?: string; // Solo per autenticazione con email e password
 
   @Field({ nullable: true })

@@ -6,9 +6,7 @@ import { AppDataSource } from './data.source';
 import { ConfigModule } from '@nestjs/config';
 import { SummaryModule } from './summary/summary.module';
 import { UserModule } from './user/user.module';
-
-
-
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,8 +18,8 @@ import { UserModule } from './user/user.module';
     // Usa la configurazione dal DataSource
     TypeOrmModule.forRoot(AppDataSource.options),
     SummaryModule,
-    UserModule
+    UserModule,
+    AuthModule
   ],
 })
 export class AppModule {}
-
