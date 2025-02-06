@@ -1,0 +1,21 @@
+node_modules
+.idea/
+.DS_Store
+# Node dependencies
+node_modules
+dist
+/dist/
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+./dist
+.dist
+# Local env files
+.env
+.env.*
+!.env.example
